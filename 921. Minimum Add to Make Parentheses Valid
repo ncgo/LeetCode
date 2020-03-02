@@ -1,0 +1,23 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Solution {
+public:
+    int minAddToMakeValid(string S) {
+        stack<char> myStack;
+        int left = 0;
+        for( int i = 0; i < S.size(); i++) {
+            if( S[i] == '(' ) {
+                myStack.push( '(' );
+            } else{
+                if( !myStack.empty() ){
+                    myStack.pop();
+                } else {
+                    left++;
+                }
+            }
+        }
+        return myStack.size() + left;
+    }
+};
