@@ -1,0 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+#include <list>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        vector<int> v;
+        traverse( root1, v);
+        traverse( root2, v);
+        sort(v.begin(), v.end());
+        return v;
+    }
+    
+private:
+    void traverse( TreeNode* r, vector<int> &v ) {
+       if( r != NULL ) {
+           traverse( r -> left, v);
+           v.push_back(r -> val);
+           traverse( r -> right, v);
+       }
+    }
+};
